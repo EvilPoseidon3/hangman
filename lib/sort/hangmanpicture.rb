@@ -1,11 +1,34 @@
 
+module Hang_the_man
+
+
+  def wrong_guess_detector(guess)
+    @wrongguess = @word.include?(guess)
+      
+      @hangman_array = ["|     O",["|    |","|    /|","|    /|\\"],"|     |",["|    /","|    / \\"]]
+    if @wrongguess == false
+      if @row3.length == "|"
+      @row3 = @hangman_array[0]
+      elsif @row4 != @hangman_array[1][2]
+        @row4 = @hangman_array[1][0] unless @row4 == @hangman_array[1][0]
+        @row4 = @hangman_array[1][1] unless @row4 == @hangman_array[1][1]
+        @row4 = @hangman_array[1][2]
+      elsif @row5 != @hangman_array[2][0]
+        @row5 = @hangman_array[2][0]
+      else @row6 != @hangman_array[3][1]
+        @row6 = @hangman_array[3][0] unless @row6 == @hangman_array[3][0]
+        @row = @hangman_array[3][1] 
+      end
+    end
+end
+
 class Hangmanpicture
 
   def initialize(wordguess)
     @word = wordguess
     @title_row = " Hangman"
     @row1 =      "__________"
-    @row2 =      "|"
+    @row2 =      "|     |"
     @row3 =      "|"
     @row4 =      "|"
     @row5 =      "|"
