@@ -34,10 +34,11 @@ end
 class Hangmanpicture
 
   include Hang_the_man
-  attr_accessor :gameover
+  attr_accessor :gameover, :word, :gamewon
 
   def initialize(wordguess)
     @gameover = false
+    @gamewon = false
     @word = wordguess.to_s
     @title_row = " Hangman"
     @row1 =      "__________"
@@ -98,8 +99,10 @@ class Hangmanpicture
       @message = "You got #{@all_index.length} letters correct"
       @guessletters.push(guess)
       @all_index.each {|index|
-        @wordrow[index + 1].sub!(' ', guess)}
-    
+        @wordrow[index + 1].sub!(' ', ColorizedString["#{guess}"].colorize(:background => :white, :color => :black, :mode => :bold))}
+      if @wordrow.include?(' |') == false
+        @gamewon = true
+      end
     end
       
   
